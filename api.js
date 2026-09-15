@@ -7,13 +7,22 @@ app.use(cors());
 
 app.get('/', (req, res) => {
   res.json({
-    date: new Date().toLocaleString('pt-BR'),
-    status: 'API no Render funcionando!'
+    status: 'API funcionando!'
+  });
+});
+
+app.get('/data-hora', (req, res) => {
+  const agora = new Date();
+
+  res.json({
+    data: agora.toLocaleDateString('pt-BR'),
+    hora: agora.toLocaleTimeString('pt-BR')
   });
 });
 
 // Porta dinâmica para o Render
 const PORT = process.env.PORT || 3000;
+
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
 });
