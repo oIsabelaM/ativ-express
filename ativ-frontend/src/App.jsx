@@ -1,6 +1,19 @@
+import { useEffect, useState } from 'react'
 import './App.css'
 
 function App() {
+  const [data, setData] = useState('')
+  const [hora, setHora] = useState('')
+
+  useEffect(() => {
+    fetch('https://ativ-express.onrender.com/data-hora')
+      .then((resposta) => resposta.json())
+      .then((dados) => {
+        setData(dados.data)
+        setHora(dados.hora)
+      })
+  }, [])
+
   return (
     <main className="app">
       <div className="decoracao decoracao-1">♡</div>
@@ -27,7 +40,7 @@ function App() {
 
             <div>
               <span className="titulo">Data</span>
-              <strong>Em breve...</strong>
+              <strong>{data}</strong>
             </div>
           </div>
 
@@ -36,7 +49,7 @@ function App() {
 
             <div>
               <span className="titulo">Hora</span>
-              <strong>Em breve...</strong>
+              <strong>{hora}</strong>
             </div>
           </div>
         </div>
